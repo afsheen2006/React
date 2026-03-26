@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <div class="clock"></div>
+
+    <!-- Libraries FIRST -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <!--  React Code -->
+    <script type="text/babel">
+
+      /* ---------- MAIN CONTENT ---------- */
+      const shippingcost = 5;
+      const productioncost = 7;
+      const date = dayjs().format('MMMM D');
+
+      function Content (){
+        return (
+          <div>
+            <button>Click Me</button>
+
+            <p>
+              Shipping cost: {shippingcost} <br />
+              Production cost: {productioncost} <br />
+              Total cost: {shippingcost + productioncost}
+            </p>
+
+            <button>Place Order</button>
+          </div>
+        )
+      }
+
+     function Counter(){
+      const [count, setCount] = React.useState(0);
+      return(
+      <div>  
+      <button onClick={()=> setCount(count+1)}>Count: {count}</button> 
+      <button onClick={()=> setCount(0)}> Reset</button>
+      </div>
+     )
+     }
+
+     function Enter(){
+      const [name, setName] = React.useState("");
+
+      function Enterbutton(){
+        alert(`Hello ${name}, Welcome to React!`);
+      }
+
+      return(
+        <div>
+          <input 
+            placeholder="Enter Your Name" 
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <button onClick={Enterbutton}>Submit</button>
+        </div>
+      )
+     }
+
+      function App(){
+        return (
+          <div>
+            <Content/>
+            <p>Today is {date}</p>
+            <Counter/>
+          </div>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+      
+    </script>
+  </body>
+</html>
