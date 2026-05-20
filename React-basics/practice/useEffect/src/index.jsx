@@ -50,7 +50,7 @@ export const ReactuseEffect = () => {
         </div>
     )
 
-}*/
+}
 
 export const ReactuseEffect = () => {
     const [name, setName] = useState("")
@@ -66,4 +66,86 @@ export const ReactuseEffect = () => {
         </div>
     )
 
+}*/
+
+//API FETCHING
+
+
+export const ApiFetching = () => {
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const API = "https://pokeapi.co/api/v2/pokemon/squirtle"
+
+    /*const fetchPokemon =()=>{
+        fetch(API)
+        .then((res)=>res.json())
+        .then((data)=>{
+            setData(data);
+            setLoading(false);
+        })
+        .catch((error)=>{
+                console.log(error);
+                setError(error);
+                setLoading(false);
+        })
+
+    }*/
+   
+    const fetchPokemon = async()=>{
+        try{
+            const res = await fetch(API);
+            const data = await res.json();
+            setData(data);
+            setLoading(false);
+            
+        }
+        catch(error){
+            console.log(error);
+            setError(error);
+            setLoading(false);
+        }
+
+    useEffect(()=>{
+        fetchPokemon()
+    },[])
+
+    console.log(data);
+
+if (loading){
+    return(
+        <div>
+            <h1>Loading...</h1>
+        </div>
+    )
 }
+
+if(error){
+    return(
+        <div>
+            <h1>Error: {error.message}</h1>
+        </div>
+    )
+}
+
+if(data){
+    return(
+        <div>
+            <header>
+            <h1>API Fetching</h1>
+            </header>
+            <ul className="card-demo">
+                <li className="pokemon-card">
+                    <figure> 
+                        <img src={data.sprites.other.dream_world.front_default} alt={data.name} />
+                    </figure>
+                    <h2>{data.name}</h2>
+                    <p>Height: {data.height}</p>
+                    <p>Weight: {data.weight}</p>
+                </li>
+            </ul>
+        </div>
+    )
+}
+}
+
