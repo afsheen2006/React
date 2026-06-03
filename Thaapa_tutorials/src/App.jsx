@@ -1,13 +1,16 @@
-import Home from './hooks/ContextApi/home'
-import { BioProvider } from './hooks/ContextApi/index'
+import App from './App'
+import './index.css'
+import { ThemeProvider } from './hooks/Toggle/darklight';
+import DarkLight from './hooks/Toggle/darklight';
 import './App.css';
 
 function App() {
   return (
-    <BioProvider>
-      <Home />
-    </BioProvider>
+    <>
+      <ThemeProvider>
+        <DarkLight />
+      </ThemeProvider>
+    </>
   )
 }
-
 export default App
