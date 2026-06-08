@@ -1,16 +1,14 @@
-import App from './App'
 import './index.css'
-import { ThemeProvider } from './hooks/Toggle/darklight';
-import DarkLight from './hooks/Toggle/darklight';
 import './App.css';
+import { ReducerComponent } from './hooks/useReducer';
 
 function App() {
   return (
     <>
-      <ThemeProvider>
-        <DarkLight />
-      </ThemeProvider>
+      <ReducerComponent />
     </>
   )
 }
-export default App
+
+export default App;
+
